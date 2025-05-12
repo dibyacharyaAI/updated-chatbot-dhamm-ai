@@ -90,7 +90,7 @@ if __name__ == "__main__":
     GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 
     prepare_db_instance = PrepareVectorDB(
-        file_path=r"/Users/soumyajitghosh/Downloads/Dhamm_AI_Chatbot-main/cleaned_transcript.txt",
+        file_path="cleaned_transcript.txt",
         chunk_size=5000,
         chunk_overlap=1000,
         embedding_model='models/embedding-001',
