@@ -28,7 +28,7 @@ if not GROQ_API_KEY:
 
 # Define constants
 EMBEDDING_MODEL = "models/text-embedding-004"
-VECTORDB_DIR = r"/Users/soumyajitghosh/Downloads/Dhamm_AI_Chatbot-main/vectordb.py "
+VECTORDB_DIR = "vectordb.py "
 COLLECTION_NAME = "chroma"
 K = 2
 TRANSCRIPT_FILE = "cleaned_transcript.txt"
