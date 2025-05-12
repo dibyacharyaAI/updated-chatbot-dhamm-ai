@@ -64,3 +64,4 @@ if __name__ == "__main__":
         collection_name='chroma'
     )
     prepare_db_instance.run()
+    
