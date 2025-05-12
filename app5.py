@@ -2,7 +2,7 @@ import os
 from dotenv import load_dotenv
 from langchain.text_splitter import CharacterTextSplitter
 from langchain_groq import ChatGroq
-from langchain_chroma import Chroma
+from langchain_community.vectorstores import Chroma
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationalRetrievalChain
