@@ -4,7 +4,7 @@
 // Test the chat API
 async function testChatAPI() {
     try {
-        const response = await fetch('http://localhost:8000/api/chat', {
+        const response = await fetch('http://localhost:5000/api/chat', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -37,7 +37,7 @@ async function testChatAPI() {
 // Clear conversation history
 async function clearConversation() {
     try {
-        const response = await fetch('http://localhost:8000/api/clear', {
+        const response = await fetch('http://localhost:5000/api/clear', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -61,7 +61,7 @@ async function clearConversation() {
 // Toggle showing source chunks
 async function toggleChunks(showChunks) {
     try {
-        const response = await fetch('http://localhost:8000/api/toggle-chunks', {
+        const response = await fetch('http://localhost:5000/api/toggle-chunks', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -88,7 +88,7 @@ async function toggleChunks(showChunks) {
 // Health check
 async function healthCheck() {
     try {
-        const response = await fetch('http://localhost:8000/', {
+        const response = await fetch('http://localhost:5000/', {
             method: 'GET'
         });
         
@@ -130,7 +130,7 @@ async function runConversationDemo() {
     // Follow-up question that builds on the first
     if (response1) {
         setTimeout(async () => {
-            const response2 = await fetch('http://localhost:8000/api/chat', {
+            const response2 = await fetch('http://localhost:5000/api/chat', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
