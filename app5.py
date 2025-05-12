@@ -386,6 +386,53 @@ def toggle_chunks():
     
     show_chunks = data['show_chunks']
     return jsonify({"message": f"Show chunks set to {show_chunks}", "show_chunks": show_chunks})
+@app.route("/api/generate-questions", methods=["POST"])
+def generate_questions():
+    data = request.get_json()
+    course_outcome = data.get("course_outcome")
+    bloom_level = data.get("bloom_level")
+
+    prompt = f"""You are an expert question generator.
+Based on the following course outcome and Bloom level, generate:
+- One objective MCQ with 4 options (A-D)
+- One short answer subjective question
+
+Course Outcome: {course_outcome}
+Bloom Level: {bloom_level}
+
+Format your response like this:
+Objective Question:
+...
+A. ...
+B. ...
+C. ...
+D. ...
+
+Short Answer Question:
+..."""
+
+    model = ChatGoogleGenerativeAI(model="gemini-pro")
+    response = model.invoke(prompt)
+    response_text = response.content
+
+    lines = response_text.split('\\n')
+    options = [line.strip() for line in lines if line.strip().startswith(("A.", "B.", "C.", "D."))]
+    subjective_q = next((line for line in lines if "Short Answer Question" in line), "")
+    subjective_index = lines.index(subjective_q) + 1 if subjective_q in lines else -1
+    subjective = lines[subjective_index] if subjective_index < len(lines) else "N/A"
+
+    return jsonify({
+        "bloom_level": bloom_level,
+        "course_outcome": course_outcome,
+        "questions": {
+            "objective": {
+                "question": "Here are the generated questions:",
+                "options": options
+            },
+            "subjective": subjective
+        },
+        "raw_text": response_text
+    })
 
 if __name__ == '__main__':
     app.run(debug=True)
