@@ -28,7 +28,7 @@ if not GROQ_API_KEY:
 
 # Define constants
 EMBEDDING_MODEL = "models/text-embedding-004"
-VECTORDB_DIR = "vectordb.py "
+VECTORDB_DIR = "vectordb"
 COLLECTION_NAME = "chroma"
 K = 2
 TRANSCRIPT_FILE = "cleaned_transcript.txt"
